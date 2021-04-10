@@ -1,0 +1,53 @@
+<mat-card style="width:50vw !important;
+position: absolute;
+top: 100%;
+left: 50%;
+transform: translate(-50%, 20%);" >
+
+    <mat-card-title class="col col-12 d-flex justify-content-center">
+        {{data.mission_name}}
+    </mat-card-title>
+
+
+<div  style="min-height: 25vh;" class=" justify-content-center align-items-center d-flex ">
+
+    <div class="col col-5 p-5">
+        <img width="150px" src='{{data.links.mission_patch_small}}' mat-card-image>
+    </div>
+    <div class="col col-7">
+        <div class="row">
+            <h2>
+                Rocket Name: {{data.rocket.rocket_name }}
+            </h2>
+        </div>
+        <div class="row">
+            <h2>
+                Rocket Type: {{data.rocket.rocket_type }}
+            </h2>
+        </div>
+        <div class="row">
+            <h2>
+                Year: {{data.launch_year}}
+            </h2>
+        </div>
+        <div class="row">
+            <h2>
+                Launch Site: {{data.launch_site.site_name_long}}
+            </h2>
+        </div>
+        <div class="row">
+            <h2>
+                Launch success status: {{data.launch_success | json }}
+            </h2>
+        </div>
+
+        <div class="row">
+            <h3>
+                Details: {{data.details}}
+            </h3>
+        </div>
+
+    </div>
+</div>
+
+</mat-card>

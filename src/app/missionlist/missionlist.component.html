@@ -1,0 +1,109 @@
+<h2>SpaceX Mission Launch List</h2>
+<div class="d-flex row">
+    <div class="my-2 col-6"  *ngFor="let data of missions | slice: (page-1) * pageSize : (page-1) * pageSize + 2">
+        <div >
+            <mat-card>
+
+                        <mat-card-title class="col col-12 my-1 d-flex align-items-center justify-content-between">
+                            {{data.mission_name}} <button mat-mini-fab  color="blue" (click)="open(content)" aria-label="Example icon button with a delete icon">
+                                <mat-icon>info</mat-icon>
+                              </button>
+                        </mat-card-title>
+
+
+                    <div  style="min-height: 25vh" class=" justify-content-center align-items-center d-flex ">
+
+                        <div class="col col-5 p-5">
+                            <img width="150px" src='{{data.links.mission_patch_small}}' mat-card-image>
+                        </div>
+                        <div class="col col-7">
+                            <div class="row">
+                                <h2>
+                                    Rocket Name: {{data.rocket.rocket_name }}
+                                </h2>
+                            </div>
+                            <div class="row">
+                                <h2>
+                                    Rocket Type: {{data.rocket.rocket_type }}
+                                </h2>
+                            </div>
+                            <div class="row">
+                                <h2>
+                                    Year: {{data.launch_year}}
+                                </h2>
+                            </div>
+
+                           <div class="row">
+                               <h3>
+                                    Details: {{data.details}}
+                              </h3>
+                           </div>
+                        </div>
+                    </div>
+
+
+            </mat-card>
+
+        </div>
+        <ng-template #content let-modal>
+            <app-missiondetails [data]="data" ></app-missiondetails>
+          </ng-template>
+    </div>
+    <div class="my-2 col-6"  *ngFor="let data of missions | slice: (page-1) * pageSize+2 : page * pageSize">
+        <div >
+            <mat-card>
+                <mat-expansion-panel  hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-card-title class="col col-12 my-3 d-flex align-items-center justify-content-between">
+                            {{data.mission_name}}
+                            <button mat-icon-button (click)="open(content)"><mat-icon >info</mat-icon></button>
+
+                        </mat-card-title>
+
+                    </mat-expansion-panel-header>
+                    <div  style="min-height: 25vh" class=" justify-content-center align-items-center d-flex ">
+
+                        <div class="col col-5 p-5">
+                            <img width="150px" src='{{data.links.mission_patch_small}}' mat-card-image>
+                        </div>
+                        <div class="col col-7">
+                            <div class="row">
+                                <h2>
+                                    Rocket Name: {{data.rocket.rocket_name }}
+                                </h2>
+                            </div>
+                            <div class="row">
+                                <h2>
+                                    Rocket Type: {{data.rocket.rocket_type }}
+                                </h2>
+                            </div>
+                            <div class="row">
+                                <h2>
+                                    Year: {{data.launch_year}}
+                                </h2>
+                            </div>
+
+                           <div class="row">
+                               <h3>
+                                  Details: {{data.details}}
+                              </h3>
+                           </div>
+
+                        </div>
+                    </div>
+
+
+                </mat-expansion-panel>
+            </mat-card>
+
+        </div>
+        <ng-template  #content let-modal>
+                  <app-missiondetails [data]="data" ></app-missiondetails>
+                </ng-template>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <ngb-pagination [collectionSize]="70" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+
+</div>
